@@ -134,7 +134,7 @@ I'm interested in the intersection between creativity, data, human behaviour and
 
             <div class="pt-4">
              <a href="https://example.com" target="_blank" rel="noopener noreferrer" 
-             data-track-name="projekt-1"
+             data-link-name="projekt-1"
              class="inline-flex items-center px-6 py-3 rounded-full border border-[#d62828] ...">
                      BESÖK HEMSIDAN
             </a>   
@@ -250,13 +250,15 @@ I'm interested in the intersection between creativity, data, human behaviour and
 
 <!-- 7. CONTACT / LET'S WORK TOGETHER FOOTER -->
 <section id="contact" class="py-24 px-6 md:px-16 bg-white border-t border-gray-300 text-center relative overflow-hidden">
-    <a href="Tel:+46704142666" data-track-name="kontakt-telefon" class="...">
-<a href="mailto:lycke.lundin@gmail.com" data-track-name="kontakt-email" class="...">
 <a href="https://www.linkedin.com/in/lycke-lundin-309007156/" target="_blank" rel="noopener noreferrer" 
-   data-track-name="kontakt-linkedin"
-   class="px-6 py-3 rounded-full border border-gray-300 text-gray-800 text-xs md:text-sm font-medium hover:border-[#d62828] hover:text-[#d62828] transition-all duration-300">
-    LinkedIn
-</a>
+   data-link-name="kontakt-linkedin" class="...">LinkedIn</a>
+   
+<a href="Tel:+46704142666" data-link-name="kontakt-telefon" class="...">+46704142666</a>
+
+<a href="mailto:lycke.lundin@gmail.com" data-link-name="kontakt-email" class="...">lycke.lundin@gmail.com</a>
+
+<a href="https://example.com" target="_blank" rel="noopener noreferrer" 
+   data-link-name="projekt-1" class="...">BESÖK HEMSIDAN</a>
     
     <div class="max-w-5xl mx-auto space-y-8">
         
@@ -306,6 +308,33 @@ I'm interested in the intersection between creativity, data, human behaviour and
 <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 </script>
-
+<script>
+    document.querySelectorAll('a[data-link-name]').forEach(function(link) {
+        link.addEventListener('click', function() {
+            window.dataLayer.push({
+                event: 'link_click',
+                link: {
+                    name: link.getAttribute('data-link-name'),
+                    text: link.textContent.trim(),
+                    url: link.getAttribute('href')
+                }
+            });
+        });
+    });
+</script>
+<script>
+    document.querySelectorAll('a[data-link-name]').forEach(function(link) {
+        link.addEventListener('click', function() {
+            window.dataLayer.push({
+                event: 'link_click',
+                link: {
+                    name: link.getAttribute('data-link-name'),
+                    text: link.textContent.trim(),
+                    url: link.getAttribute('href')
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
